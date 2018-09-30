@@ -18,7 +18,7 @@
 #=============================================================================
 
 # Array of all valid language codes.
-VALID_LANGUAGE_CODES="afr amh ara asm aze aze_cyrl bel ben bih bod bos bul cat
+VALID_LANGUAGE_CODES="afr akk amh ara asm aze aze_cyrl bel ben bih bod bos bul cat
                       ceb ces chi_sim chi_tra chr cym cyr_lid dan deu div dzo
                       ell eng enm epo est eus fas fil fin fra frk frm gle glg
                       grc guj hat heb hin hrv hun hye iast iku ind isl ita ita_old
@@ -859,6 +859,13 @@ TIBETAN_FONTS=( \
     "Yagpo" \
     )
 
+CUNEIFORM_FONTS=(  \
+    "CuneiformComposite" \
+    "CuneiformNAOutline_Medium" \
+    "CuneiformOB" \
+    #"Segoe UI Historic" \
+    )
+
 # The following fonts will be rendered vertically in phase I.
 VERTICAL_FONTS=( \
     "TakaoExGothic" \ # for jpn
@@ -1161,6 +1168,8 @@ set_lang_specific_parameters() {
     kir ) test -z "$FONTS" && FONTS=( "${KYRGYZ_FONTS[@]}" )
           TRAINING_DATA_ARGUMENTS=" --infrequent_ratio=100" ;;
     kur ) test -z "$FONTS" && FONTS=( "${KURDISH_FONTS[@]}" ) ;;
+    akk ) test -z "$EXPOSURES" && EXPOSURES="-3 -2 -1 0 1 2 3"
+          test -z "$FONTS" && FONTS=( "${CUNEIFORM_FONTS[@]}" ) ;;
 
     *) err_exit "Error: ${lang} is not a valid language code"
   esac
